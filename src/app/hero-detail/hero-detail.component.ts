@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Hero } from "../hero";
+import { ActivatedRoute } from "@angular/router";
+import { Location } from "@angular/common";
+import { HeroService } from "../hero.service";
 
 @Component({
   selector: 'app-hero-detail',
@@ -7,6 +10,12 @@ import { Hero } from "../hero";
   styleUrls: ['./hero-detail.component.css']
 })
 export class HeroDetailComponent {
+
+  constructor(
+    private route: ActivatedRoute,
+    private heroService: HeroService,
+    private location: Location
+  ) { }
   @Input() hero?: Hero;
 
 }
