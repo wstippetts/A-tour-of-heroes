@@ -10,6 +10,10 @@ import { catchError, map, tap } from "rxjs/operators";
   providedIn: 'root'
 })
 export class HeroService {
+  deletehero(id: number): Observable<Hero> {
+    const url = `${this.heroesUrl}/${id}`;
+    return this.http.delete<Hero>(url, this.httpOptions).pipe(tap(_ => this.log(`deleted hero id=${id}`)), catchError(this.handleError<Hero>('deleteHero')));
+  }
   addHero(hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(this.heroesUrl, hero, this.httpOptions).pipe(tap((newHero: Hero) => this.log(`added hero with id=${newHero.id}`)), catchError(this.handleError<Hero>('addHero')));
   }

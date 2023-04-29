@@ -28,6 +28,11 @@ export class HeroesComponent implements OnInit {
     this.heroService.addHero({ name } as Hero).subscribe(hero => { this.heroes.push(hero); });
   }
 
+  delete(hero: Hero): void {
+    this.heroes = this.heroes.filter(h => h !== hero);
+    this.heroService.deletehero(hero.id).subscribe();
+  }
+
   // onSelect(hero: Hero): void {
   //   this.selectedHero = hero;
   //   this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
